@@ -157,7 +157,9 @@ class LocaltuyaCover(LocalTuyaEntity, CoverEntity):
         if self._config[CONF_POSITIONING_MODE] == COVER_MODE_TIMED:
             # for timed positioning, stop the cover after a full opening timespan
             # instead of waiting the internal timeout
-            self.hass.async_create_task(self.async_stop_after_timeout(self._config[CONF_SPAN_TIME] + 5))
+            self.hass.async_create_task(
+                self.async_stop_after_timeout(self._config[CONF_SPAN_TIME] + 5)
+            )
 
     async def async_close_cover(self, **kwargs):
         """Close cover."""
@@ -166,7 +168,9 @@ class LocaltuyaCover(LocalTuyaEntity, CoverEntity):
         if self._config[CONF_POSITIONING_MODE] == COVER_MODE_TIMED:
             # for timed positioning, stop the cover after a full opening timespan
             # instead of waiting the internal timeout
-            self.hass.async_create_task(self.async_stop_after_timeout(self._config[CONF_SPAN_TIME] + 5))
+            self.hass.async_create_task(
+                self.async_stop_after_timeout(self._config[CONF_SPAN_TIME] + 5)
+            )
 
     async def async_stop_cover(self, **kwargs):
         """Stop the cover."""
@@ -176,7 +180,9 @@ class LocaltuyaCover(LocalTuyaEntity, CoverEntity):
     def status_restored(self):
         """Restore the last stored cover status."""
         if self._config[CONF_POSITIONING_MODE] == COVER_MODE_TIMED:
-            stored_pos = int(self._stored_state.attributes.get("current_position", "-1"))
+            stored_pos = int(
+                self._stored_state.attributes.get("current_position", "-1")
+            )
             if stored_pos != -1:
                 self._current_cover_position = stored_pos
                 self.debug("Restored cover position %s", self._current_cover_position)
